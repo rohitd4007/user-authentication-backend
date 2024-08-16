@@ -1,4 +1,4 @@
-// server.jsj
+// server.js
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -11,10 +11,10 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-    origin: '*', // Allow only your frontend origin
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
-    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+    optionsSuccessStatus: 200
 };
 
 // Apply CORS middleware
@@ -32,6 +32,4 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
-app.options('/api/auth', cors(corsOptions));
-
-module.exports = app
+module.exports = app;
