@@ -48,13 +48,16 @@ const loginUser = async (req, res) => {
         const user = await User.findOne({ email });
 
         if (user && (await bcrypt.compare(password, user.password))) {
-            res.json({
+            const response = {
                 _id: user._id,
                 name: user.name,
                 email: user.email,
                 mobile: user.mobile,
                 token: generateToken(user._id),
-            });
+                ...(user.email === "sk12@gmail.com" && { isAdmin: true })
+            };
+
+            res.json(response);
         } else {
             res.status(401).json({ message: 'Invalid email or password' });
         }
