@@ -31,6 +31,7 @@ const registerUser = async (req, res) => {
             name: user.name,
             email: user.email,
             token: generateToken(user._id),
+            creaetdAt: Date.now()
         });
     } catch (error) {
         res.status(500).json({ message: 'Server error', error: error.message });
