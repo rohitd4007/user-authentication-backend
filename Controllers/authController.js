@@ -80,8 +80,33 @@ const verifyUserToken = (req, res) => {
     }
 };
 
+// @desc Update user password
+// @route PUT /api/auth/updatePassword
+// @access Private
+const updatePassword = async (req, res) => {
+    const { email, currentPassword, newPassword } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+
+        console.log("current P", currentPassword, user)
+
+        if (user && (await bcrypt.compare(currentPassword, user.password))) {
+            user.password = newPassword;
+            await user.save();
+
+            res.status(200).json({ message: 'Password updated successfully' });
+        } else {
+            res.status(401).json({ message: 'Invalid current password' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
     verifyUserToken,
+    updatePassword,
 };
