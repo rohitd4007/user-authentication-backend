@@ -13,6 +13,6 @@ const router = express.Router();
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.post('/verifyToken', protect, verifyUserToken);
-router.post('/change-password', protect, updatePassword);
+router.post('/change-password', updatePassword);
 
 module.exports = router;
