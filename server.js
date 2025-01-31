@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const geoip = require('geoip-lite');
+const { default: axios } = require('axios');
 
 dotenv.config();
 
