@@ -174,5 +174,4 @@ module.exports = {
     createProduct,
     getProductById,
     getAllProducts,
-    testProducts  // Add this to exports
 };
